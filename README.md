@@ -16,7 +16,6 @@ Perform a basic TCP SYN scan on the local network to:
 ##  Tools Used
 
 - **Nmap* – For scanning the local network and performing TCP SYN scan
-- **Wireshark* (optional) – For analyzing packet capture during scans
 
 ---
 
@@ -26,7 +25,6 @@ Perform a basic TCP SYN scan on the local network to:
 
 - `Task1_Report.pdf` – Written report summarizing the task steps, findings, and learnings
 - `nmap_scan_output.txt` – Raw output from the Nmap scan
-- `wireshark_capture.png` – Screenshot of packet analysis (if used)
 - `open_ports_notes.txt` – Summary of open ports and identified services
 - `screenshots/` – Additional images showing configuration, scans, etc. (if any)
 

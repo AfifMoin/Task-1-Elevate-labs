@@ -1,0 +1,116 @@
+Cybersecurity Internship Project at Elevate Labs
+
+
+  Task 1: Scan Your Local Network for Open Ports
+
+
+
+
+* Objective: Learn to discover open ports on devices in your     local network to understand  network exposure.
+
+
+* Tools: Nmap , Wireshark 
+
+
+
+
+Description :
+* Conducted TCP SYN scans on a local network using Nmap to discover live hosts and open ports.
+
+* Analyzed scan results to identify common services and assess associated security risks.
+
+* Utilized Wireshark for optional packet capture and traffic analysis.
+
+* Saved and documented scan outputs in text and HTML formats for reporting purposes.
+
+
+
+   *  Nmap was already installed virtually on oracle virtual box 
+   *  Found my local ip range : 192.168.24.194
+          Command used to find ip range is :  ip addr
+          
+ (Proof of concept attached )
+  
+
+
+
+
+
+   *  Command tasked to  run :  nmap -sS 192.168.24.194
+
+
+Description 
+
+
+nmap: This is the command-line tool you're using — Nmap (Network Mapper), a   powerful tool for network discovery and security auditing.
+
+  -sS: This flag tells Nmap to perform a TCP SYN Scan, also known as a        "half-open" scan.
+
+   * It sends a SYN packet to the target port.
+
+   * If the port is open, it responds with a SYN-ACK.
+
+   * Nmap then does not complete the connection — it sends an RST (reset) packet instead. That’s why it’s called half-open.
+
+   * This scan is stealthy and fast, and is the default scan when run as root/admin.
+192.168.24.194: This is the target IP address /local IP range — in most home networks, this is the router/gateway IP.
+
+
+(Proof of concept attached)
+
+
+  
+
+
+
+      *  Open ports found : 
+
+
+PORT           STATE          SERVICE
+
+
+135/tcp      open             msrpc
+139/tcp      open             netbios-ssn
+445/tcp      open             microsoft-ds
+902/tcp      open            iss-realsecure
+      * Identify Potential Services And  Security Risks From Open Ports.
+Port 135
+Service: Microsoft RPC (Remote Procedure Call)
+
+Description: Used by Microsoft’s DCOM and RPC services for communication between client and server applications. Commonly used in Windows networking and management tasks.
+
+Security Risk: Exploited in Worm attacks (e.g., Blaster, Sasser).
+
+Recommendation: Block port 135 at the firewall/perimeter if not required.
+
+---
+Port 139
+Service: NetBIOS Session Service
+
+Description: Used for Windows file and printer sharing over older NetBIOS protocol. Allows communication between Windows devices in a local network.
+
+Security Risk: Enables enumeration of shared folders, users, and system information.
+
+Recommendation: Disable NetBIOS over TCP/IP if not required.
+
+---
+Port 445
+Service: Microsoft-DS (SMB over TCP)
+
+Description: Used by Server Message Block (SMB) protocol for file sharing, printer access, and inter-process communication in Windows networks.
+
+Security Risk: Commonly targeted by ransomware and worms (WannaCry, NotPetya, EternalBlue exploits).
+
+Recommendation: Block port 445 on public-facing systems.
+
+---
+ Port 902
+Service: VMware Server Console / VMware Authentication Daemon
+
+Description: Used for VMware remote management, particularly for connections between VMware clients and ESXi hosts or vCenter.
+
+Security Risk: If exposed to the internet, can allow unauthorized remote access to VMware services. 
+
+Recommendation: Restrict access to trusted admin networks only.
+
+Do not expose VMware ports (902/903/443) to the internet.
